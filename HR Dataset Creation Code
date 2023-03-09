@@ -1,0 +1,50 @@
+import pandas as pd
+import numpy as np
+import datetime
+
+# Define the columns
+candidate_id = np.arange(10001, 20001)
+doj_extended = np.random.choice([True, False], size=len(candidate_id))
+duration_to_accept_offer = np.random.randint(1, 30, size=len(candidate_id))
+notice_period = np.random.randint(15, 90, size=len(candidate_id))
+offered_band = np.random.choice(['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6'], size=len(candidate_id))
+percentage_hike_expected = np.random.randint(10, 50, size=len(candidate_id))
+percentage_hike_offered = np.random.randint(10, 50, size=len(candidate_id))
+joining_bonus = np.random.choice([True, False], size=len(candidate_id))
+gender = np.random.choice(['Male', 'Female'], size=len(candidate_id))
+candidate_source = np.random.choice(['Employee Referral', 'Agency', 'Direct'], size=len(candidate_id))
+relevant_experience = np.random.randint(1, 20, size=len(candidate_id))
+line_of_business = np.random.choice(['Sales', 'Marketing', 'Finance', 'IT', 'HR'], size=len(candidate_id))
+date_of_birth = [datetime.date(1980, 1, 1) + datetime.timedelta(days=int(x)) for x in np.random.randint(10000, 15000, size=len(candidate_id))]
+joining_location = np.random.choice(['New York', 'San Francisco', 'London', 'Paris', 'Tokyo'], size=len(candidate_id))
+candidate_relocation_status = np.random.choice([True, False], size=len(candidate_id))
+hr_status = np.random.choice(['Joined', 'Not Joined'], size=len(candidate_id))
+
+# Create a DataFrame from the columns
+data = pd.DataFrame({
+    'Candidate ID': candidate_id,
+    'DOJ Extended': doj_extended,
+    'Duration to Accept Offer': duration_to_accept_offer,
+    'Notice Period': notice_period,
+    'Offered Band': offered_band,
+    'Percentage Hike Expected': percentage_hike_expected,
+    'Percentage Hike Offered': percentage_hike_offered,
+    'Joining Bonus': joining_bonus,
+    'Gender': gender,
+    'Candidate Source': candidate_source,
+    'Relevant Experience': relevant_experience,
+    'Line of Business': line_of_business,
+    'Date of Birth': date_of_birth,
+    'Joining Location': joining_location,
+    'Candidate Relocation Status': candidate_relocation_status,
+    'HR Status': hr_status
+})
+
+# Save the DataFrame to a CSV file
+data.to_csv('synthetic_hr_data_with_candidate.csv', index=False)
+import os
+
+if os.path.exists('synthetic_hr_data_with_candidate.csv'):
+    print('CSV file was created.')
+else:
+    print('CSV file was not created.')
